@@ -47,8 +47,8 @@ bot.on('message', (msg) => {
                     commandfile = cmd.slice(1);
                     commandfile = commandfile.substring(0, (commandfile.indexOf('@') === -1 ? commandfile.length : commandfile.indexOf('@')));
                     let qry = 'SELECT rand() ord, cp.*, pr.* ' +
-                        'FROM twnimages.command_provider cp ' +
-                        '         INNER JOIN twnimages.provider pr ' +
+                        'FROM command_provider cp ' +
+                        '         INNER JOIN provider pr ' +
                         '                    ON pr.id_provider = cp.id_provider ' +
                         'WHERE cp.command = \'' + commandfile + '\' ' +
                         '  AND cp.deleted = 0 ' +
