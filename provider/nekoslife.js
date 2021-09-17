@@ -1,16 +1,13 @@
-const rp = require('request-promise');
+const axios = require("axios");
 /**
  *
  * @param provider
  * @returns {Promise<*>}
  */
 module.exports.run = async (provider) => {
-    const options = {
-        method: 'GET',
-        uri: `${provider.destination}${provider.endpoint}`,
-    };
-    console.log(options);
-    return rp(options);
+    return axios(`${provider.destination}${provider.endpoint}`).then(function(result){
+        return result.data.url
+    });
 }
 
 module.exports.help = {

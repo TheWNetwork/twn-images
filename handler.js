@@ -56,7 +56,8 @@ bot.on('message', (msg) => {
                         'LIMIT 1;';
                     commandfile = await pool.query(qry);
                     if (typeof commandfile[0] !== 'undefined') {
-                        let imageUrl = await (bot.commands.get('request')).run(botconfig, pool, bot, msg, commandfile[0]);
+                        let imagePromise = (bot.commands.get('request')).run(botconfig, pool, bot, msg, commandfile[0]);
+                        let imageUrl = await imagePromise;
                         let extension = imageUrl.substring(imageUrl.lastIndexOf('.') + 1, imageUrl.length);
                         switch (extension) {
                             case 'gif':
@@ -67,7 +68,6 @@ bot.on('message', (msg) => {
                                 let sendPhotoLib = require(`./lib/sendPhoto.js`);
                                 await sendPhotoLib.run(botconfig.token, msg.chat.id, '', imageUrl);
                         }
-
                     }
                     console.log();
                 }

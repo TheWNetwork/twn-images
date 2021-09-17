@@ -2,9 +2,8 @@ const rp = require("request-promise");
 module.exports.run = async (botconfig, dbclient, bot, message, provider) => {
     try {
         let providerQuery = require(`../provider/${provider.code}.js`);
-        let imagePromise = providerQuery.run(provider);
-        let image =  JSON.parse(await imagePromise);
-        return image.url;
+        let promise = providerQuery.run(provider);
+        return await promise;
     } catch (e) {
 
     }
