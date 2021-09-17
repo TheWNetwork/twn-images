@@ -1,0 +1,24 @@
+{
+  "name": "twn-images",
+  "description": "TheWNetwork - Public Images Bot",
+  "version": "1.0.0",
+  "main": "handler.js",
+  "license": "ISC",
+  "dependencies": {
+    "file-system": "*",
+    "fs": "0.0.1-security",
+    "node-telegram-bot-api": "^0.51.0",
+    "promise-mysql": "^4.1.3",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.6",
+    "uuid": "^3.4.0"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": "git+https://github.com/TheWNetwork/twn-images.git",
+  "homepage": "https://github.com/TheWNetwork/twn-images#readme",
+  "bugs": {
+    "url": "https://github.com/TheWNetwork/twn-images/issues"
+  }
+}

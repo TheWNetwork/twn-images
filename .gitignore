@@ -1,0 +1,5 @@
+/node_modules/
+/.serverless/
+/.idea/
+config/config.json
+yarn*
