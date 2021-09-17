@@ -23,7 +23,7 @@ fs.readdir("./commands/", (err, files) => {
 bot.on('getUpdates', (update) => {
     console.log(update);
 });
-bot.on('message',(msg) => {
+bot.on('message', (msg) => {
     try {
         let messageArray = '';
         (async () => {
@@ -55,8 +55,19 @@ bot.on('message',(msg) => {
                         'ORDER BY 1 ' +
                         'LIMIT 1;';
                     commandfile = await pool.query(qry);
-                    if(typeof commandfile[0] !== 'undefined'){
-                        (bot.commands.get('request')).run(botconfig, pool, bot, msg, commandfile[0]);
+                    if (typeof commandfile[0] !== 'undefined') {
+                        let imageUrl = await (bot.commands.get('request')).run(botconfig, pool, bot, msg, commandfile[0]);
+                        let extension = imageUrl.substring(imageUrl.lastIndexOf('.') + 1, imageUrl.length);
+                        switch (extension) {
+                            case 'gif':
+                                let sendAnimation = require(`./lib/sendAnimation.js`);
+                                await sendAnimation.run(botconfig.token, msg.chat.id, '',imageUrl);
+                                break;
+                            default:
+                                let sendPhotoLib = require(`./lib/sendPhoto.js`);
+                                await sendPhotoLib.run(botconfig.token, msg.chat.id, '', imageUrl);
+                        }
+
                     }
                     console.log();
                 }
