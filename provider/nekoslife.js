@@ -13,7 +13,6 @@ module.exports.run = async (provider) => {
     return rp(options);
 }
 
-
 module.exports.help = {
     name: "NekosLife"
 };

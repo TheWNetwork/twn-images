@@ -26,7 +26,6 @@ bot.on('getUpdates', (update) => {
 bot.on('message',(msg) => {
     try {
         let messageArray = '';
-        const chatid = msg.chat.id;
         (async () => {
             const pool = await mysql.createPool({
                 "connectionLimit": 113,
@@ -45,11 +44,13 @@ bot.on('message',(msg) => {
                 if (commandfile) {
                     commandfile.run(botconfig, pool, bot, msg, args)
                 } else {
+                    commandfile = cmd.slice(1);
+                    commandfile = commandfile.substring(0, (commandfile.indexOf('@') === -1 ? commandfile.length : commandfile.indexOf('@')));
                     let qry = 'SELECT rand() ord, cp.*, pr.* ' +
                         'FROM twnimages.command_provider cp ' +
                         '         INNER JOIN twnimages.provider pr ' +
                         '                    ON pr.id_provider = cp.id_provider ' +
-                        'WHERE cp.command = \'' + cmd.slice(1) + '\' ' +
+                        'WHERE cp.command = \'' + commandfile + '\' ' +
                         '  AND cp.deleted = 0 ' +
                         'ORDER BY 1 ' +
                         'LIMIT 1;';
@@ -60,10 +61,7 @@ bot.on('message',(msg) => {
                     console.log();
                 }
             } catch (e) {
-                let commandfile = bot.commands.get('repo');
-                if (commandfile) {
-                    commandfile.run(botconfig, pool, bot, msg, [])
-                }
+
             }
         })();
 

@@ -1,5 +1,5 @@
 module.exports.run = async (botconfig, dbclient, bot, message, args) => {
-    if (msg.chat.type !== 'private') {
+    if (message.chat.type !== 'private') {
         return;
     }
 
