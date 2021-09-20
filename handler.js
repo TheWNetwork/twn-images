@@ -61,18 +61,23 @@ bot.on('message', (msg) => {
                         let extension = imageUrl.substring(imageUrl.lastIndexOf('.') + 1, imageUrl.length);
                         switch (extension) {
                             case 'gif':
+                            case 'mp4':
                                 let sendAnimation = require(`./lib/sendAnimation.js`);
-                                await sendAnimation.run(botconfig.token, msg.chat.id, '',imageUrl);
+                                await sendAnimation.run(botconfig.token, msg.chat.id, commandfile[0].description,imageUrl);
+                                break;
+                            case 'webm':
+                                let sendSticker = require(`./lib/sendSticker.js`);
+                                await sendSticker.run(botconfig.token, msg.chat.id, commandfile[0].description,imageUrl);
                                 break;
                             default:
                                 let sendPhotoLib = require(`./lib/sendPhoto.js`);
-                                await sendPhotoLib.run(botconfig.token, msg.chat.id, '', imageUrl);
+                                await sendPhotoLib.run(botconfig.token, msg.chat.id, commandfile[0].description, imageUrl);
                         }
                     }
                     console.log();
                 }
             } catch (e) {
-
+                console.log(e.message);
             }
         })();
 

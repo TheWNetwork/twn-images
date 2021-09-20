@@ -13,11 +13,11 @@ module.exports.run = async (provider) => {
         },
         url: `${provider.destination}`,
         data: {
-            tags: `${provider.command}`,
+            tags: `${provider.endpoint}`,
             random: 1,
             limit: 1,
         }
-    }).then(function(result){
+    }).then(function (result) {
         return result.data[0].file_url
     }).catch(function (error) {
         console.log(error);
