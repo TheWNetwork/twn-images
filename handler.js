@@ -39,7 +39,7 @@ bot.on('message', (msg) => {
                 messageArray = msg.text.split(" ");
                 let cmd = messageArray[0];
                 let args = msg.text.slice(cmd.length + 1);
-                let commandfile = bot.commands.get(cmd.slice(1));
+                let commandfile = bot.commands.get(commandfile = commandfile.substring(0, (commandfile.indexOf('@') === -1 ? commandfile.length : commandfile.indexOf('@'))));
 
                 if (commandfile) {
                     commandfile.run(botconfig, pool, bot, msg, args)
