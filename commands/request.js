@@ -1,4 +1,3 @@
-const rp = require("request-promise");
 module.exports.run = async (botconfig, dbclient, bot, message, provider) => {
     try {
         let providerQuery = require(`../provider/${provider.code}.js`);
