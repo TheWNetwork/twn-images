@@ -39,13 +39,13 @@ bot.on('message', (msg) => {
                 messageArray = msg.text.split(" ");
                 let cmd = messageArray[0];
                 let args = msg.text.slice(cmd.length + 1);
-                let commandfile = bot.commands.get(commandfile = commandfile.substring(0, (commandfile.indexOf('@') === -1 ? commandfile.length : commandfile.indexOf('@'))));
+                let commandRequest = cmd.slice(1);
+                commandfile = bot.commands.get(commandRequest.substring(0, (commandRequest.indexOf('@') === -1 ? commandRequest.length : commandRequest.indexOf('@'))));
 
                 if (commandfile) {
                     commandfile.run(botconfig, pool, bot, msg, args)
                 } else {
-                    commandfile = cmd.slice(1);
-                    commandfile = commandfile.substring(0, (commandfile.indexOf('@') === -1 ? commandfile.length : commandfile.indexOf('@')));
+                    commandfile = commandRequest.substring(0, (commandRequest.indexOf('@') === -1 ? commandRequest.length : commandRequest.indexOf('@')));
                     let qry = 'SELECT rand() ord, cp.*, pr.* ' +
                         'FROM command_provider cp ' +
                         '         INNER JOIN provider pr ' +
