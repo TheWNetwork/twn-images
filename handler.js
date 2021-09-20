@@ -63,15 +63,19 @@ bot.on('message', (msg) => {
                             case 'gif':
                             case 'mp4':
                                 let sendAnimation = require(`./lib/sendAnimation.js`);
-                                await sendAnimation.run(botconfig.token, msg.chat.id, commandfile[0].description,imageUrl);
+                                await sendAnimation.run(botconfig.token, msg.chat.id, commandfile[0].description, imageUrl);
                                 break;
                             case 'webm':
                                 let sendSticker = require(`./lib/sendSticker.js`);
-                                await sendSticker.run(botconfig.token, msg.chat.id, commandfile[0].description,imageUrl);
+                                await sendSticker.run(botconfig.token, msg.chat.id, commandfile[0].description, imageUrl);
                                 break;
                             default:
                                 let sendPhotoLib = require(`./lib/sendPhoto.js`);
                                 await sendPhotoLib.run(botconfig.token, msg.chat.id, commandfile[0].description, imageUrl);
+                        }
+                        if (msg.chat.type !== 'private') {
+                            let group = require(`./lib/group.js`);
+                            await group.run(pool, msg.chat.id);
                         }
                     }
                     console.log();

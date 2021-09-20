@@ -20,6 +20,16 @@ create table provider
     disabled    int default 0             null
 );
 
+create table groups
+(
+    id_group    bigint auto_increment
+        primary key,
+    id_telegram bigint           null,
+    enabled     int    default 0 null,
+    times       bigint default 0 null
+);
+
+
 INSERT INTO twnimages.provider (description, code, destination, api_user, api_key, disabled) VALUES
     ('Nekos.life', 'NekosLife', 'https://nekos.life/api/v2/img/', null, null, 0),
     ('Danbooru.donmai.us', 'Danbooru', 'https://danbooru.donmai.us/posts.json', '', '', 0),
