@@ -73,10 +73,8 @@ bot.on('message', (msg) => {
                                 let sendPhotoLib = require(`./lib/sendPhoto.js`);
                                 await sendPhotoLib.run(botconfig.token, msg.chat.id, commandfile[0].description, imageUrl);
                         }
-                        if (msg.chat.type !== 'private') {
-                            let group = require(`./lib/group.js`);
-                            await group.run(pool, msg.chat.id);
-                        }
+                        let group = require(`./lib/group.js`);
+                        await group.run(pool, msg.chat.id);
                     }
                     console.log();
                 }
