@@ -81,6 +81,7 @@ bot.on('message', (msg) => {
             } catch (e) {
                 console.log(e.message);
             }
+            pool.release();
         })();
 
     } catch (e) {
