@@ -27,7 +27,7 @@ bot.on('message', (msg) => {
     try {
         let messageArray = '';
         (async () => {
-            const pool = await mysql.createPool({
+            var pool = await mysql.createPool({
                 "connectionLimit": 113,
                 "host": botconfig.mysqlConnection.host,
                 "port": botconfig.mysqlConnection.port,
@@ -46,7 +46,7 @@ bot.on('message', (msg) => {
                     commandfile.run(botconfig, pool, bot, msg, args)
                 } else {
                     commandfile = commandRequest.substring(0, (commandRequest.indexOf('@') === -1 ? commandRequest.length : commandRequest.indexOf('@')));
-                    let qry = 'SELECT rand() ord, cp.*, pr.* ' +
+                    let qry = 'SELECT rand() ord, cp.command, cp.endpoint, pr.code, pr.destination, pr.api_user, pr.api_key ' +
                         'FROM command_provider cp ' +
                         '         INNER JOIN provider pr ' +
                         '                    ON pr.id_provider = cp.id_provider ' +
@@ -81,7 +81,7 @@ bot.on('message', (msg) => {
             } catch (e) {
                 console.log(e.message);
             }
-            pool.release();
+            pool.end();
         })();
 
     } catch (e) {
