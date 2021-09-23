@@ -4,5 +4,5 @@ module.exports.run = async (botconfig, dbclient, bot, message, args) => {
 };
 
 module.exports.help = {
-    name: "start"
+    name: "ping"
 };
