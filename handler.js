@@ -3,6 +3,18 @@ const fs = require("fs");
 const mysql = require('promise-mysql');
 const TelegramBot = require('node-telegram-bot-api');
 const bot = new TelegramBot(botconfig.token, {polling: true});
+var pool;
+(async () => {
+    pool = await mysql.createPool({
+        "connectionLimit": 113,
+        "host": botconfig.mysqlConnection.host,
+        "port": botconfig.mysqlConnection.port,
+        "user": botconfig.mysqlConnection.user,
+        "password": botconfig.mysqlConnection.password,
+        "database": botconfig.mysqlConnection.database,
+    });
+})();
+
 bot.commands = new Map();
 
 fs.readdir("./commands/", (err, files) => {
@@ -23,18 +35,11 @@ fs.readdir("./commands/", (err, files) => {
 bot.on('getUpdates', (update) => {
     console.log(update);
 });
+
 bot.on('message', (msg) => {
     try {
         let messageArray = '';
         (async () => {
-            var pool = await mysql.createPool({
-                "connectionLimit": 113,
-                "host": botconfig.mysqlConnection.host,
-                "port": botconfig.mysqlConnection.port,
-                "user": botconfig.mysqlConnection.user,
-                "password": botconfig.mysqlConnection.password,
-                "database": botconfig.mysqlConnection.database,
-            });
             try {
                 messageArray = msg.text.split(" ");
                 let cmd = messageArray[0];
@@ -84,11 +89,9 @@ bot.on('message', (msg) => {
             } catch (e) {
                 console.log(e.message);
             }
-            pool.end();
         })();
 
     } catch (e) {
         console.log(e.message);
-        //bot.sendMessage(chatid, e.message);
     }
 });
