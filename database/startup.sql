@@ -5,6 +5,7 @@ create table command_provider
     id_provider         bigint                   null,
     command             varchar(20) charset utf8 null,
     endpoint            varchar(200)             null,
+    nsfw                int                      null,
     deleted             int default 0            null
 );
 
