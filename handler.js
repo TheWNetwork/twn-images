@@ -40,7 +40,7 @@ bot.on('message', (msg) => {
                 let cmd = messageArray[0];
                 let args = msg.text.slice(cmd.length + 1);
                 let commandRequest = cmd.slice(1);
-                if(cmd.slice(1).substring(0, 1) !== '/'){
+                if(cmd.substring(0, 1) !== '/'){
                     return;
                 }
                 commandfile = bot.commands.get(commandRequest.substring(0, (commandRequest.indexOf('@') === -1 ? commandRequest.length : commandRequest.indexOf('@'))));
