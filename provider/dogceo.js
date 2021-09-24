@@ -7,7 +7,7 @@ const axios = require("axios");
 module.exports.run = async (provider) => {
     return axios(`${provider.destination}`)
         .then(function (result) {
-            return result.data[0].message
+            return result.data.message
         });
 }
 
