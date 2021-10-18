@@ -3,8 +3,10 @@ module.exports.run = async (botconfig, pool, bot, message, args) => {
         {
             reply_markup: {
                 inline_keyboard: [
-                    [{text: 'Paypal', url: 'https://www.paypal.com/paypalme/elsalundqvist'},
-                    {text: 'Ko-Fi', url: 'https://ko-fi.com/thewnetwork'}]
+                    [
+                        {text: 'Paypal', url: 'https://www.paypal.me/elsalundqvist'},
+                        {text: 'Ko-Fi', url: 'https://ko-fi.com/thewnetwork'}
+                    ]
                 ]
             }
         }
