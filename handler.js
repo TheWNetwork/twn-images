@@ -59,7 +59,7 @@ bot.on('message', (msg) => {
                     if (!(typeof userData[0] === 'undefined' || userData[0].enabled === 1)) {
                         return;
                     }
-                    let qry_provider = 'SELECT rand() ord, cp.command, cp.endpoint,pr.description, pr.code, pr.destination, pr.api_user, pr.api_key ' +
+                    let qry_provider = 'SELECT rand() ord, cp.command, cp.endpoint, pr.description, pr.code, pr.destination, pr.api_user, pr.api_key ' +
                         'FROM command_provider cp ' +
                         '         INNER JOIN provider pr ' +
                         '                    ON pr.id_provider = cp.id_provider ' +

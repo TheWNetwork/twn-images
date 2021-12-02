@@ -7,5 +7,10 @@
     "password": "",
     "database": ""
   },
-  "token": ""
+  "token": "",
+  "donate": {
+    "paypal" : "https://www.paypal.me/elsalundqvist",
+    "other" : "https://www.patreon.com/TheWNetwork"
+  }
+
 }
