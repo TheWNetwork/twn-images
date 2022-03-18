@@ -87,9 +87,9 @@ bot.on('message', (msg) => {
                         default:
                             let sendPhotoLib = require(`./lib/sendPhoto.js`);
                             await sendPhotoLib.run(botconfig.token, msg.chat.id, commandfile[0].description, imageUrl);
-                            let group = require(`./lib/group.js`);
-                            await group.run(pool, msg.chat.id);
                     }
+                    let group = require(`./lib/group.js`);
+                    await group.run(pool, msg.chat.id);
                     console.log();
                 }
             } catch (e) {
@@ -97,6 +97,28 @@ bot.on('message', (msg) => {
             }
         })();
 
+    } catch (e) {
+        console.log(e.message);
+    }
+});
+
+bot.on('inline_query', (msg) => {
+    try {
+        if (commandfile) {
+            let query = encodeURIComponent(msg.query.trim());
+            let returntext = commandfile.run(botconfig, null, bot, msg, msg.query).then(returntext => {
+                bot.answerInlineQuery(msg.id, [
+                    {
+                        type: 'article',
+                        id: query + '_exchange',
+                        title: `Exchange ${msg.query}`,
+                        input_message_content: {
+                            message_text: returntext,
+                        }
+                    }
+                ]);
+            });
+        }
     } catch (e) {
         console.log(e.message);
     }

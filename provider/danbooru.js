@@ -7,20 +7,22 @@ const axios = require("axios");
 module.exports.run = async (provider) => {
     return axios({
         method: 'get',
-        auth: {
-            'username': `${provider.api_user}`,
-            'password': `${provider.api_key}`,
-        },
         url: `${provider.destination}`,
         data: {
-            tags: `${provider.endpoint}`,
-            random: 1,
-            limit: 1,
-        }
+            "api_key": provider.api_key,
+            "login": provider.api_user,
+            "tags": "order:random " + provider.endpoint,
+            "limit": 1,
+        },
+        headers: {
+            'content-type': 'application/json'
+        },
+        maxRedirects: 0
     }).then(function (result) {
-        return result.data[0].file_url
+        return result.data[0].file_url;
     }).catch(function (error) {
         console.log(error);
+        console.log(error.status);
     });
 }
 
