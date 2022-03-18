@@ -4,7 +4,7 @@ module.exports.run = async (botconfig, pool, bot, message, args) => {
     let result = await pool.query(qry);
     let resulthere = await pool.query(qryhere);
 
-    bot.sendMessage(message.chat.id, `Total Groups:${result[0].groups}
+    bot.sendMessage(message.chat.id, `Total chats: ${result[0].groups}
 Requests served total: ${result[0].counter}
 Requests served on this chat:${resulthere[0].counter}
 
