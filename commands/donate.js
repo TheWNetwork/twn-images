@@ -29,7 +29,7 @@ module.exports.run = async (botconfig, pool, bot, message, args) => {
             }
         );
     } catch (e) {
-        await bot.sendMessage(message.chat.id, `Donate to improve and pay our servers\n\nYou can check our services on @TheWNetwork.`,
+        await bot.sendMessage(message.chat.id, `Donate to improve and pay our servers and get better licenses\n\nYou can check our services on @TheWNetwork.`,
             {
                 reply_markup: {
                     inline_keyboard: [
@@ -38,7 +38,7 @@ module.exports.run = async (botconfig, pool, bot, message, args) => {
                             {text: 'Patreon', url: 'https://www.patreon.com/TheWNetwork'}
                         ],
                         [
-                            {text: 'Github', url: 'https://github.com/TheWNetwork/twn-images'}
+                            {text: 'Github Repository', url: 'https://github.com/TheWNetwork/twn-images'}
                         ]
                     ]
                 }
