@@ -36,7 +36,6 @@ module.exports.run = async (botconfig, pool, bot, message, args) => {
                         [
                             {text: 'LiberPay (Preferred)', url: 'https://liberapay.com/TheWNetwork/donate'},
                             {text: 'Paypal', url: 'https://www.paypal.me/elsalundqvist'},
-                            {text: 'Patreon', url: 'https://www.patreon.com/TheWNetwork'}
                         ],
                         [
                             {text: 'Github Repository', url: 'https://github.com/TheWNetwork/twn-images'}
