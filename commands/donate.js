@@ -19,7 +19,7 @@ module.exports.run = async (botconfig, pool, bot, message, args) => {
                         ],
                         [
                             {text: 'Paypal', url: 'https://www.paypal.me/elsalundqvist'},
-                            {text: 'Patreon', url: 'https://www.patreon.com/TheWNetwork'}
+                            {text: 'LiberPay (Preferred)', url: 'https://liberapay.com/TheWNetwork/donate'}
                         ],
                         [
                             {text: 'Github', url: 'https://github.com/TheWNetwork/twn-images'}
@@ -34,6 +34,7 @@ module.exports.run = async (botconfig, pool, bot, message, args) => {
                 reply_markup: {
                     inline_keyboard: [
                         [
+                            {text: 'LiberPay (Preferred)', url: 'https://liberapay.com/TheWNetwork/donate'},
                             {text: 'Paypal', url: 'https://www.paypal.me/elsalundqvist'},
                             {text: 'Patreon', url: 'https://www.patreon.com/TheWNetwork'}
                         ],
