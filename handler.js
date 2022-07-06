@@ -87,6 +87,11 @@ bot.on('message', (msg) => {
                         default:
                             let sendPhotoLib = require(`./lib/sendPhoto.js`);
                             await sendPhotoLib.run(botconfig.token, msg.chat.id, commandfile[0].description, imageUrl);
+                            break;
+                            /*
+                            let sendVideo = require(`./lib/sendvideo.js`);
+                            await sendVideo.run(botconfig.token, msg.chat.id, commandfile[0].description, imageUrl);
+                            break;*/
                     }
                     let group = require(`./lib/group.js`);
                     await group.run(pool, msg.chat.id);
