@@ -81,6 +81,7 @@ bot.on('message', (msg) => {
                             send = require(`./lib/sendAnimation.js`);
                             break;
                         case 'webm':
+                        case 'webp':
                             send = require(`./lib/sendSticker.js`);
                             break;
                         default:
