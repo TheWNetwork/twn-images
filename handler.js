@@ -74,25 +74,20 @@ bot.on('message', (msg) => {
                     let imagePromise = (bot.commands.get('request')).run(botconfig, pool, bot, msg, commandfile[0]);
                     let imageUrl = await imagePromise;
                     let extension = imageUrl.substring(imageUrl.lastIndexOf('.') + 1, imageUrl.length);
+                    let send = {};
                     switch (extension) {
                         case 'gif':
                         case 'mp4':
-                            let sendAnimation = require(`./lib/sendAnimation.js`);
-                            await sendAnimation.run(botconfig.token, msg.chat.id, commandfile[0].description, imageUrl);
+                            send = require(`./lib/sendAnimation.js`);
                             break;
                         case 'webm':
-                            let sendSticker = require(`./lib/sendSticker.js`);
-                            await sendSticker.run(botconfig.token, msg.chat.id, commandfile[0].description, imageUrl);
+                            send = require(`./lib/sendSticker.js`);
                             break;
                         default:
-                            let sendPhotoLib = require(`./lib/sendPhoto.js`);
-                            await sendPhotoLib.run(botconfig.token, msg.chat.id, commandfile[0].description, imageUrl);
+                            send = require(`./lib/sendPhoto.js`);
                             break;
-                            /*
-                            let sendVideo = require(`./lib/sendvideo.js`);
-                            await sendVideo.run(botconfig.token, msg.chat.id, commandfile[0].description, imageUrl);
-                            break;*/
                     }
+                    await send.run(botconfig.token, msg.chat.id, commandfile[0].description, imageUrl);
                     let group = require(`./lib/group.js`);
                     await group.run(pool, msg.chat.id);
                     console.log();
