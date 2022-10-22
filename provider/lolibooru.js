@@ -9,10 +9,8 @@ module.exports.run = async (provider) => {
         method: 'get',
         url: `${provider.destination}`,
         data: {
-            "api_key": provider.api_key,
-            "login": provider.api_user,
-            "tags": "order:random",
             "limit": 1,
+            "tags": "order:random"
         },
         headers: {
             'content-type': 'application/json'
