@@ -7,7 +7,7 @@ const axios = require("axios");
 module.exports.run = async (provider) => {
     return axios({
         method: 'get',
-        url: `${provider.destination}?api_key=${provider.api_key}&user_id=${provider.api_user}&limit=1&tags=order:random`,
+        url: `${provider.destination}?limit=1&tags=order:random`,
         headers: {
             'content-type': 'application/json'
         },
