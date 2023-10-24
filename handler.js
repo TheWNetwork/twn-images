@@ -54,7 +54,6 @@ bot.on('message', (msg) => {
                 : commandRequest.indexOf('@'))));
 
         if (commandfile) {
-          console.log(commandfile.help.name ?? '');
           commandfile.run(botconfig, pool, bot, msg, args);
         } else {
           commandfile = commandRequest.substring(0,
