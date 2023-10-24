@@ -13,8 +13,9 @@ module.exports.run = async (provider) => {
         },
         maxRedirects: 0
     }).then(function (result) {
-        console.log(result);
         return result.data.post[0].file_url
+    }).catch(function (error) {
+        console.log(error.status);
     });
 }
 

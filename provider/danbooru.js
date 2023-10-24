@@ -1,4 +1,6 @@
 const axios = require("axios");
+const FormData = require('form-data');
+
 /**
  *
  * @param provider
@@ -6,17 +8,9 @@ const axios = require("axios");
  */
 module.exports.run = async (provider) => {
     return axios({
-        method: 'get',
-        url: `${provider.destination}`,
-        data: {
-            "api_key": provider.api_key,
-            "login": provider.api_user,
-            "tags": "order:random " + provider.endpoint,
-            "limit": 1,
-        },
-        headers: {
-            'content-type': 'application/json'
-        },
+        method: 'GET',
+        maxBodyLength: Infinity,
+        url: `${provider.destination}?api_key=${provider.api_key}&login=${provider.api_user}&limit=1&tags=order:random ${provider.endpoint}`,
         maxRedirects: 0
     }).then(function (result) {
         return result.data[0].file_url;
